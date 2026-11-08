@@ -1,0 +1,25 @@
+<svg width="200" height="220" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- A letterform -->
+  <path
+    d="M100 10L20 190H52L68 148H132L148 190H180L100 10Z M78 120L100 56L122 120H78Z"
+    fill="url(#logoGrad)"
+  />
+  <!-- Gold swoosh underline -->
+  <path
+    d="M18 208 Q60 194 100 198 Q140 202 182 192"
+    stroke="url(#swooshGrad)"
+    stroke-width="4"
+    stroke-linecap="round"
+    fill="none"
+  />
+  <defs>
+    <linearGradient id="logoGrad" x1="20" y1="10" x2="180" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C9A66B"/>
+      <stop offset="100%" stop-color="#8A6A3C"/>
+    </linearGradient>
+    <linearGradient id="swooshGrad" x1="18" y1="200" x2="182" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C9A66B"/>
+      <stop offset="100%" stop-color="#8A6A3C"/>
+    </linearGradient>
+  </defs>
+</svg>

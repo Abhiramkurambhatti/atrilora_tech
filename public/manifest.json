@@ -1,0 +1,16 @@
+{
+  "name": "Atrilora Technologies",
+  "short_name": "Atrilora",
+  "description": "Design · Develop · Automate · Grow",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#9A7B4F",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
