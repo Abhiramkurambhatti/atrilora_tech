@@ -190,16 +190,18 @@ ${message}
       }
     }
 
-    // 3. Priority 3: Zero-setup Direct Forwarding (FormSubmit.co API)
-    // Works out of the box with NO api key required!
-    // Simply delivers the form directly to abhiramkurambhatti@gmail.com.
+    // 3. Priority 3: Direct Forwarding (FormSubmit.co API)
+    // Delivers directly to recipientEmail with origin headers
     if (!emailSent) {
       try {
+        const originUrl = request.headers.get('origin') || 'https://atrilora.com';
         const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
+            Origin: originUrl,
+            Referer: `${originUrl}/`,
           },
           body: JSON.stringify({
             _subject: `✨ New Project Inquiry from ${name} (${serviceName})`,
@@ -214,13 +216,18 @@ ${message}
           }),
         });
 
-        if (response.ok) {
+        const formSubmitData = await response.json().catch(() => null);
+
+        if (response.ok && (formSubmitData?.success === 'true' || formSubmitData?.success === true)) {
           emailSent = true;
           deliveryMethod = 'formsubmit_direct';
           console.log('✅ Form successfully dispatched to FormSubmit for:', recipientEmail);
         } else {
-          const resText = await response.text();
-          console.warn('FormSubmit responded with:', response.status, resText);
+          console.warn('⚠️ FormSubmit response:', formSubmitData);
+          if (formSubmitData?.message?.toLowerCase().includes('activation')) {
+            deliveryMethod = 'formsubmit_activation_pending';
+            console.log('🔔 FormSubmit is awaiting one-time email activation by:', recipientEmail);
+          }
         }
       } catch (err) {
         console.error('FormSubmit delivery error:', err);
