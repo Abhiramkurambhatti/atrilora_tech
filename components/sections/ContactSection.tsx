@@ -18,6 +18,7 @@ type FormData = z.infer<typeof schema>;
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
@@ -28,20 +29,24 @@ export default function ContactSection() {
 
   const onSubmit = async (data: FormData) => {
     setSubmitting(true);
+    setServerError(null);
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      if (res.ok) {
+
+      const resData = await res.json().catch(() => ({}));
+
+      if (res.ok && resData.success) {
         setSubmitted(true);
         reset();
+      } else {
+        setServerError(resData.error || 'Something went wrong while sending. Please try WhatsApp or email directly.');
       }
     } catch {
-      // Fall through — still show success for UX
-      setSubmitted(true);
-      reset();
+      setServerError('Unable to reach the server. Please feel free to message us directly on WhatsApp or email.');
     } finally {
       setSubmitting(false);
     }
@@ -129,7 +134,7 @@ export default function ContactSection() {
                 transition={{ duration: 0.5 }}
               >
                 <div
-                  className="w-20 h-20 rounded-full flex items-center justify-center mb-6 text-3xl"
+                  className="w-20 h-20 rounded-full flex items-center justify-center mb-6 text-3xl text-white"
                   style={{ background: 'linear-gradient(135deg, #C9A66B 0%, #8A6A3C 100%)' }}
                 >
                   ✓
@@ -137,9 +142,16 @@ export default function ContactSection() {
                 <h3 className="font-display text-3xl font-semibold text-rich-black mb-3">
                   Message sent!
                 </h3>
-                <p className="font-body text-sm text-rich-black/50 leading-relaxed max-w-xs">
-                  Thank you for reaching out. We&apos;ll review your project and get back to you within 24 hours.
+                <p className="font-body text-sm text-rich-black/60 leading-relaxed max-w-xs mb-6">
+                  Thank you for reaching out. We&apos;ve received your inquiry and will review your project within 24 hours.
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="font-body text-xs font-semibold text-gold hover:text-gold-dark transition-colors underline underline-offset-4"
+                >
+                  Send another inquiry
+                </button>
               </motion.div>
             ) : (
               <form
@@ -147,6 +159,11 @@ export default function ContactSection() {
                 className="bg-white rounded-4xl p-8 md:p-10 card-shadow space-y-5"
                 noValidate
               >
+                {serverError && (
+                  <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-600 font-body text-xs leading-relaxed">
+                    {serverError}
+                  </div>
+                )}
                 {/* Name */}
                 <div>
                   <label className="font-body text-xs font-semibold text-rich-black/60 uppercase tracking-wider mb-1.5 block">
