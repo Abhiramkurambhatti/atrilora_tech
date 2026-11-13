@@ -96,7 +96,7 @@ export default function ContactSection() {
               </a>
 
               <a
-                href="mailto:abhiramkurambhatti@gmail.com"
+                href="mailto:atrilora@gmail.com"
                 className="flex items-center gap-4 group"
               >
                 <div className="w-12 h-12 rounded-2xl bg-rich-black flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
@@ -107,7 +107,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className="font-body text-xs text-rich-black/40 mb-0.5">Email</p>
-                  <p className="font-body text-sm font-semibold text-rich-black group-hover:text-gold transition-colors duration-200">abhiramkurambhatti@gmail.com</p>
+                  <p className="font-body text-sm font-semibold text-rich-black group-hover:text-gold transition-colors duration-200">atrilora@gmail.com</p>
                 </div>
               </a>
             </div>

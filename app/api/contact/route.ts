@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
     const serviceName = SERVICE_LABELS[service] || service;
     const budgetName = BUDGET_LABELS[budget] || budget;
-    const recipientEmail = process.env.CONTACT_EMAIL || 'abhiramkurambhatti@gmail.com';
+    const recipientEmail = process.env.CONTACT_EMAIL || 'atrilora@gmail.com';
     const submissionTime = new Date().toLocaleString('en-IN', {
       timeZone: 'Asia/Kolkata',
       dateStyle: 'medium',

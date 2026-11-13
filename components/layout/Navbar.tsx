@@ -159,7 +159,7 @@ export default function Navbar() {
 
             {/* Footer info */}
             <div className="absolute bottom-10 text-center">
-              <p className="font-body text-sm text-rich-black/40">abhiramkurambhatti@gmail.com</p>
+              <p className="font-body text-sm text-rich-black/40">atrilora@gmail.com</p>
               <p className="font-body text-sm text-rich-black/40">+91 9552050093</p>
             </div>
           </motion.div>

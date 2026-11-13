@@ -70,11 +70,11 @@ export default function Footer() {
                 +91 9552050093
               </a>
               <a
-                href="mailto:abhiramkurambhatti@gmail.com"
+                href="mailto:atrilora@gmail.com"
                 className="flex items-center gap-2 font-body text-sm text-ivory/60 hover:text-ivory transition-colors duration-200"
               >
                 <MailIcon />
-                abhiramkurambhatti@gmail.com
+                atrilora@gmail.com
               </a>
             </div>
           </div>

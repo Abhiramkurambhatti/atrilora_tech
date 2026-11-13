@@ -76,7 +76,7 @@ export default function RootLayout({
                 '@type': 'ContactPoint',
                 telephone: '+91-9552050093',
                 contactType: 'customer service',
-                email: 'abhiramkurambhatti@gmail.com',
+                email: 'atrilora@gmail.com',
               },
               sameAs: [],
               address: {
